@@ -54,8 +54,16 @@ app.use('/admin', authToken, authRole('admin'),(req, res) => {
     proxy.web(req, res, { target: 'http://localhost:5001' });
 })
 
+//REDIRECT TO THE REGISTRATION MICROSERVICE, public, no token required
+app.use('/register', (req, res) => {
+    console.log("INSIDE API GATEWAY register ROUTE")
+    req.url = req.originalUrl;
+    proxy.web(req, res, { target: 'http://localhost:5003' });
+})
+
 //REDIRECT TO THE LOGIN(Authentication) MICROSERVICE
-app.use('/auth/login', (req, res) => {
+app.use('/auth', (req, res) => {
+    console.log("INSIDE API GATEWAY login ROUTE")
     req.url = req.originalUrl;
     proxy.web(req, res, { target: 'http://localhost:5002' });
 })

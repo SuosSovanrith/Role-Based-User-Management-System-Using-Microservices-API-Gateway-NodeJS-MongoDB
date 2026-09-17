@@ -7,9 +7,7 @@ const UserSchema = schema_mongoose.Schema(
        email: { type: String, required: true, unique: true },
        password: { type: String },
        phone: { type: Number },
-       role: { type: String },
-       createdAt: { type: Date, default: Date.now },
-       updatedAt: { type: Date, default: Date.now }
+       role: { type: String }
     }, 
     {
        timestamps: true
